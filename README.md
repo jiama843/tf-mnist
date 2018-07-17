@@ -5,17 +5,17 @@ Training models against the mnist dataset
 
 
 CNN Modelling
-Convolutional Neural Nets for processing MNIST
+# Convolutional Neural Nets for processing MNIST
 
 ----------
-Description
+# Description
 
 Convolutional networks are a type of network that is primarily used to develop classification models.
 
 They are in a class of feed-forward neural networks.
 
 
-Components
+# Components
 
 
 1. Convolutional Layers 
