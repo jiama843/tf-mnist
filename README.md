@@ -5,9 +5,8 @@ Training models against the mnist dataset
 
 
 CNN Modelling
-# Convolutional Neural Nets for processing MNIST
 
-----------
+# Convolutional Neural Nets for processing MNIST
 # Description
 
 Convolutional networks are a type of network that is primarily used to develop classification models.
