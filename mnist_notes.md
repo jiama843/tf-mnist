@@ -180,7 +180,7 @@ The steps to creating the dense layer (with ReLU activation) are as follows:
     ```pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
       dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
       dropout = tf.layers.dropout(
-          inputs=dense, rate=0.4, training=mode == tf.estimator.ModeKeys.TRAIN)```
+          inputs=dense, rate=0.4, training=mode == tf.estimator.ModeKeys.TRAIN)
 
 → Dropout regularization
 
