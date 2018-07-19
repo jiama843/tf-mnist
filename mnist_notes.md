@@ -173,12 +173,32 @@ Same idea as the first pooling layer, we deem this to be an effective downsample
 The steps to creating the dense layer (with ReLU activation) are as follows:
 
 - Flatten the tensor that results from the 2nd pooling layer pool2. (7x7x64 → 3136)
-- Use the flattened tensor pool2 as input to a dense layer function. 
-- Use the output of the dense layer dense as input to dropout function
+- Use the flattened tensor pool2 as input to a dense layer function. (3136 → 1)
+- Use the output of the dense layer dense as input to dropout function (dropout regularization)
 
 
     pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
       dense = tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
       dropout = tf.layers.dropout(
           inputs=dense, rate=0.4, training=mode == tf.estimator.ModeKeys.TRAIN)
+
+→ Dropout regularization
+
+A method where random nodes in a neural net are dropped during training steps in an effort to reduce overfitting of a dataset. 
+
+In essence, we disable some nodes in the neural net while training so that the remaining (enabled) nodes can benefit. 
+http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf
+
+
+
+    tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
+
+→ Dense layer
+
+
+    tf.layers.dense(
+        inputs,
+        units,
+        activation=None)
+
 
