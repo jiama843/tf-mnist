@@ -192,6 +192,15 @@ http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf
 
 
     tf.layers.dense(inputs=pool2_flat, units=1024, activation=tf.nn.relu)
+    
+    
+The parameters are as follows:
+
+- inputs -  The input tensor (in this case it is the result dense)
+- rate - Rate of dropout (number of nodes to drop). e.g with drop rate 0.4, we are dropping 40% of nodes.
+- training - boolean that determines whether to:
+  - Return the output in training mode → apply dropout while training the model
+  - Return the output in inference mode → apply dropout after model is trained (in a practical application, some nodes are turned off)
 
 → Dense layer
 
@@ -201,4 +210,23 @@ http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf
         units,
         activation=None)
 
+
+The parameters are as follows:
+
+- inputs -  The input tensor
+- units - Specifies the dimensionality of the output (number of output nodes)
+- activation - The applied activation function (None specifies linear activation)
+
+
+8. Logits layer (1024 → 10)
+
+This layer returns a raw output using the results tensor dropout. The final dense layer, given 1024 input neurons will return one of 10 output neurons representing the possible numbers (0 - 9).
+
+This concludes the creation of the model.
+
+
+    tf.layers.dense(inputs=dropout, units=10)
+
+
+Training the model
 
