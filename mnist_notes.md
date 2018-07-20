@@ -1,5 +1,7 @@
 # Convolutional Neural Nets for processing MNIST
 
+Offical dropbox paper link: https://paper.dropbox.com/doc/Convolutional-Neural-Nets-for-processing-MNIST--AIENsPcRgP_xNCXg4kTgQO5qAQ-u4htcWO65ATgF3iO88p5R
+
 ----------
 # Description
 
