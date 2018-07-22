@@ -229,6 +229,13 @@ This concludes the creation of the model.
 
     tf.layers.dense(inputs=dropout, units=10)
 
+After the creation of a model, important attributes such as weights need to be optimized in order for the model to attain maximal accuracy.
 
-Training the model
+To train tensorflow models, there exists a class known as the estimator class.
+
+
+
+→ ModeKeys
+
+1. EVAL
 
