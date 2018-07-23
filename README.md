@@ -1,3 +1,6 @@
+# Hiatus
+Limited work until exam week is over.
+
 # tf-mnist
 Training models against the mnist dataset
 
