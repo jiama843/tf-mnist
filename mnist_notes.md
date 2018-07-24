@@ -233,6 +233,7 @@ After the creation of a model, important attributes such as weights need to be o
 
 To train tensorflow models, there exists a class known as the estimator class.
 
+
 Training the model
 
 After the creation of a model, important attributes such as weights need to be optimized in order for the model to attain maximal accuracy.
@@ -241,12 +242,49 @@ To train tensorflow models, there exists a class known as the estimator class.
 
 The estimator class encapsulates 4 main actions:
 
-- training
-- evaluation
-- prediction
-- export for serving
+1. training
+2. evaluation
+3. prediction
+4. export for serving
 
 They are excellent since graph building, exception handling, creating checkpoint files etc. would be controlled effectively.
+
+→ Loss
+
+![A meme](https://i.kym-cdn.com/news/images/desktop/000/000/157/cca.png)
+
+
+When prediction probability is not 1 (100%), there is a discrepancy between the predicted and observed values from a dataset. This can be measured in a quantity known as loss.
+
+There are various types of methods for calculating loss, in this example, cross entropy loss is used. Cross entropy loss is widely regarded as the most important and most used loss function.
+
+Some other types of loss:
+
+- MSE (Mean Squared Error)
+- L1 Loss (Linear Absolute value)
+- L2 Loss (Based on L1)
+
+In cross entropy loss function depicts a logarithmic relationship between loss (log loss) and predicted probability.
+
+
+![Cross Entropy Loss](http://ml-cheatsheet.readthedocs.io/en/latest/_images/cross_entropy.png)
+
+
+As the model gets more accurate in making predictions, the loss decreases logarithmically.
+
+
+      # Calculate Loss (for both TRAIN and EVAL modes)
+      loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+
+TensorFlow loss functions take in two parameters:
+
+1. labels - These are the actual, observed values from the dataset
+2. logits - These are the predicted values that result as output from the model (In ML, it has a different meaning than in the field of mathematics)
+
+The cross entropy loss function would return the result: $$-\sum\limits_i p_i \log{(q_i)}$$ where $$p_{i=1} = y$$ and$$p_{i=0} = 1- y$$. and $$q$$ is the same, except with $$\hat{y}$$ replacing $$y$$.
+
+$$y = \ label\ value$$ - predicted value (from model)
+$$\hat{y} = \ logit\ value$$ - actual value
 
 → ModeKeys
 
@@ -266,28 +304,12 @@ mode is also used as a parameter to specify what fields need to be configured wh
 
 → Configuring the estimator
 
-EstimatorSpec is used to configure the fields
-
-Depending on the value of mode, different arguments are required:
-
-- For `mode == ModeKeys.TRAIN`: required fields are `loss` and `train_op`.
-- For `mode == ModeKeys.EVAL`: required field is `loss`.
-- For `mode == ModeKeys.PREDICT`: required fields are `predictions`
-
-
-    tf.estimator.EstimatorSpec(
-          mode=mode,
-          predictions=predictions,
-          loss=loss,
-          train_op=train_op)
+In this section, we will analyze the configuration of the estimator below:
 
 
       if mode == tf.estimator.ModeKeys.PREDICT:
         return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
-    
-      # Calculate Loss (for both TRAIN and EVAL modes)
-      loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
-    
+        
       # Configure the Training Op (for TRAIN mode)
       if mode == tf.estimator.ModeKeys.TRAIN:
         optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
@@ -302,4 +324,53 @@ Depending on the value of mode, different arguments are required:
               labels=labels, predictions=predictions["classes"])}
       return tf.estimator.EstimatorSpec(
           mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
+
+EstimatorSpec is used to configure the fields.
+
+Depending on the value of mode, different arguments are required:
+
+
+1. For `mode == ModeKeys.TRAIN`: required fields are `loss` and `train_op`.
+
+
+    tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
+
+
+
+2. For `mode == ModeKeys.EVAL`: required field is `loss`.
+
+
+    tf.estimator.EstimatorSpec(mode=mode, loss=loss)
+
+
+
+3. For `mode == ModeKeys.PREDICT`: required fields are `predictions`
+
+
+    tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
+
+
+Overall, a model function can be configured with the template below so that it can be valid in the context of an estimator:
+
+
+    def my_model_fn(mode, features, labels):
+      if (mode == tf.estimator.ModeKeys.TRAIN or
+          mode == tf.estimator.ModeKeys.EVAL):
+        loss = ...
+      else:
+        loss = None
+      if mode == tf.estimator.ModeKeys.TRAIN:
+        train_op = ...
+      else:
+        train_op = None
+      if mode == tf.estimator.ModeKeys.PREDICT:
+        predictions = ...
+      else:
+        predictions = None
+    
+      return tf.estimator.EstimatorSpec(
+          mode=mode,
+          predictions=predictions,
+          loss=loss,
+          train_op=train_op)
 
