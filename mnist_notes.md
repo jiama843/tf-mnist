@@ -233,9 +233,73 @@ After the creation of a model, important attributes such as weights need to be o
 
 To train tensorflow models, there exists a class known as the estimator class.
 
+Training the model
 
+After the creation of a model, important attributes such as weights need to be optimized in order for the model to attain maximal accuracy.
+
+To train tensorflow models, there exists a class known as the estimator class.
+
+The estimator class encapsulates 4 main actions:
+
+- training
+- evaluation
+- prediction
+- export for serving
+
+They are excellent since graph building, exception handling, creating checkpoint files etc. would be controlled effectively.
 
 → ModeKeys
 
+ModeKeys are booleans defined in the estimator class that can be used in accordance with FLAGS ( https://stackoverflow.com/questions/45162446/whats-the-purpose-of-flags-in-tensorflow - after command line arguments are parsed, we determine which mode should be run)
+
+
 1. EVAL
+2. TRAIN
+3. PREDICT
+
+e.g:
+
+
+    if mode == tf.estimator.ModeKeys.PREDICT:
+
+mode is also used as a parameter to specify what fields need to be configured when calling EstimatorSpec
+
+→ Configuring the estimator
+
+EstimatorSpec is used to configure the fields
+
+Depending on the value of mode, different arguments are required:
+
+- For `mode == ModeKeys.TRAIN`: required fields are `loss` and `train_op`.
+- For `mode == ModeKeys.EVAL`: required field is `loss`.
+- For `mode == ModeKeys.PREDICT`: required fields are `predictions`
+
+
+    tf.estimator.EstimatorSpec(
+          mode=mode,
+          predictions=predictions,
+          loss=loss,
+          train_op=train_op)
+
+
+      if mode == tf.estimator.ModeKeys.PREDICT:
+        return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
+    
+      # Calculate Loss (for both TRAIN and EVAL modes)
+      loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
+    
+      # Configure the Training Op (for TRAIN mode)
+      if mode == tf.estimator.ModeKeys.TRAIN:
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
+        train_op = optimizer.minimize(
+            loss=loss,
+            global_step=tf.train.get_global_step())
+        return tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
+    
+      # Add evaluation metrics (for EVAL mode)
+      eval_metric_ops = {
+          "accuracy": tf.metrics.accuracy(
+              labels=labels, predictions=predictions["classes"])}
+      return tf.estimator.EstimatorSpec(
+          mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
 
