@@ -324,7 +324,7 @@ In this section, we will analyze the configuration of the estimator below:
               labels=labels, predictions=predictions["classes"])}
       return tf.estimator.EstimatorSpec(
           mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
-
+          
 EstimatorSpec is used to configure the fields.
 
 Depending on the value of mode, different arguments are required:
@@ -335,6 +335,9 @@ Depending on the value of mode, different arguments are required:
 
     tf.estimator.EstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 
+train_op is defined as the operation for the training step. For now, it is defined as  `tf.train.Optimizer.minimize`. 
+
+This function is responsible for updating model weights and incrementing the global step - (a counter that keeps track of the current training step).
 
 
 2. For `mode == ModeKeys.EVAL`: required field is `loss`.
@@ -373,4 +376,7 @@ Overall, a model function can be configured with the template below so that it c
           predictions=predictions,
           loss=loss,
           train_op=train_op)
+
+
+Results of the sample example
 
