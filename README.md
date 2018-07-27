@@ -1,5 +1,5 @@
 # Hiatus
-Limited work until exam week is over.
+Limited work until exam week is over. Ends August 11th 2018.
 
 # tf-mnist
 Training models against the mnist dataset
