@@ -345,6 +345,7 @@ This function is responsible for updating model weights and incrementing the glo
 
     tf.estimator.EstimatorSpec(mode=mode, loss=loss)
 
+Both of these fields have been explained in other sections of these notes.
 
 
 3. For `mode == ModeKeys.PREDICT`: required fields are `predictions`
@@ -352,6 +353,7 @@ This function is responsible for updating model weights and incrementing the glo
 
     tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 
+predictions is a tensor of predictions or a dictionary of predictions.
 
 Overall, a model function can be configured with the template below so that it can be valid in the context of an estimator:
 
