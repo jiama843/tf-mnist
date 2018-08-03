@@ -383,7 +383,7 @@ Overall, a model function can be configured with the template below so that it c
 
 Results of the sample example
 
-Typically, results were in the range [0.9, 1]. This indicates good fitting of the model since there is high confidence in success.
+Typically, results were in the range [0.9, 1].
 
 ----------
 Improving the CNN model on the mnist dataset
