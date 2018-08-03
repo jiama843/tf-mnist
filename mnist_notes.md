@@ -379,7 +379,26 @@ Overall, a model function can be configured with the template below so that it c
           loss=loss,
           train_op=train_op)
 
-→Evaluation metrics
+→Evaluation metrics (EVAL mode)
+
+
+      eval_metric_ops = {
+          "accuracy": tf.metrics.accuracy(
+              labels=labels, predictions=predictions["classes"])}
+      return tf.estimator.EstimatorSpec(
+          mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
+
+→Predictions
+
+
+      predictions = {
+          # Generate predictions (for PREDICT and EVAL mode)
+          "classes": tf.argmax(input=logits, axis=1),
+          # Add `softmax_tensor` to the graph. It is used for PREDICT and by the
+          # `logging_hook`.
+          "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
+      }
+
 
 Results of the sample example
 
