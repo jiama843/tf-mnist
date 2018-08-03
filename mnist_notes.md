@@ -379,6 +379,7 @@ Overall, a model function can be configured with the template below so that it c
           loss=loss,
           train_op=train_op)
 
+→Evaluation metrics
 
 Results of the sample example
 
