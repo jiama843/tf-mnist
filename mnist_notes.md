@@ -402,7 +402,7 @@ Overall, a model function can be configured with the template below so that it c
 
 Results of the sample example
 
-Typically, results were in the range [0.9, 1].
+Typically, estimator results were in the range [0.9, 1].
 
 ----------
 Improving the CNN model on the mnist dataset
