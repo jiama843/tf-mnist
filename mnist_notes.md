@@ -387,6 +387,13 @@ Overall, a model function can be configured with the template below so that it c
               labels=labels, predictions=predictions["classes"])}
       return tf.estimator.EstimatorSpec(
           mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
+          
+          accuracy: Calculates how often labels match predictions 
+
+Evaluation Metrics
+https://towardsdatascience.com/evaluation-metrics-for-classification-409568938a7d
+
+Use 
 
 →Predictions
 
