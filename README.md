@@ -1,6 +1,10 @@
 # tf-mnist
 Training models against the mnist dataset
 
+# August 13th Update
+
+Notes for CNN using the mnist dataset are done, experimentation by using CNN to create various classifiers can begin.
+
 # Purpose
 
 To understand and familiarize myself with the training and evalutation of a CNN learning model.
