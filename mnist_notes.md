@@ -390,10 +390,41 @@ Overall, a model function can be configured with the template below so that it c
           
           accuracy: Calculates how often labels match predictions 
 
-Evaluation Metrics
+
+- Evaluation Metrics
+
 https://towardsdatascience.com/evaluation-metrics-for-classification-409568938a7d
 
-Use 
+To evaluate how good a model is, we determine it’s accuracy.
+
+accuracy: Calculates how often labels match predictions.
+ 
+We need to determine how to evaluate the accuracy of a model. In a linear regressor, it is simple enough to calculate accuracy since there is only one variable to check: How closely does expected y match the predicted y?
+
+In the case of the mnist dataset, there are multiple variables: How do the numbers 0-9 match predicted numbers? There are multiple ways of handling this scenario.
+
+
+- Confusion Matrix
+![Confusion matrix for a binary classifier](https://www.dataschool.io/content/images/2015/01/confusion_matrix_simple2.png)
+
+
+The confusion matrix is used to depict true positives, true negatives, false positives and false negatives.
+
+
+![Confusion matrix for a binary classifier with labels](https://www.dataschool.io/content/images/2015/01/confusion_matrix2.png)
+
+
+TN = true negatives
+FP = false positives
+FN = false negatives
+TP = true positives
+
+
+- Scoring
+
+There are various methods to score the accuracy of models. In the case of a linear regressor, an average of the predicted values is sufficient.
+
+In the case of mnist, a common method is F Scoring. 
 
 →Predictions
 
