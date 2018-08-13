@@ -1,6 +1,3 @@
-# Hiatus
-Limited work until exam week is over. Ends August 10th 2018.
-
 # tf-mnist
 Training models against the mnist dataset
 
@@ -12,7 +9,6 @@ Plan: Understand the basic model and develop a more effective working model afte
 
 # Notes
 
-
-CNN Modelling
+CNN Modelling - Completed
 
 https://github.com/jiama843/tf-mnist/blob/master/mnist_notes.md
