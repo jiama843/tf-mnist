@@ -431,6 +431,7 @@ The formula to determine F is $$F = 2 \cdot \frac{precision\ \cdot\ recall}{prec
           # `logging_hook`.
           "probabilities": tf.nn.softmax(logits, name="softmax_tensor")
       }
+      
 classes: Areas where data is divided into. In mnist, there may be 0-9 classes (one for each number).
 
 probabilities:
