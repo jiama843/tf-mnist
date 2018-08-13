@@ -379,17 +379,6 @@ Overall, a model function can be configured with the template below so that it c
           loss=loss,
           train_op=train_op)
 
-→Evaluation metrics (EVAL mode)
-
-
-      eval_metric_ops = {
-          "accuracy": tf.metrics.accuracy(
-              labels=labels, predictions=predictions["classes"])}
-      return tf.estimator.EstimatorSpec(
-          mode=mode, loss=loss, eval_metric_ops=eval_metric_ops)
-          
-          accuracy: Calculates how often labels match predictions 
-
 
 - Evaluation Metrics
 
@@ -426,6 +415,12 @@ There are various methods to score the accuracy of models. In the case of a line
 
 In the case of mnist, a common method is F Scoring. 
 
+
+![Visualization of Precision and Recall](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png)
+
+
+The formula to determine F is $$F = 2 \cdot \frac{precision\ \cdot\ recall}{precision\ +\ recall}$$
+
 →Predictions
 
 
@@ -440,7 +435,7 @@ In the case of mnist, a common method is F Scoring.
 
 Results of the sample example
 
-Typically, estimator results were in the range [0.9, 1].
+Typically, estimator results (using tf.metrics.accuracy - potentially f scoring) were in the range [0.9, 1].
 
 ----------
 Improving the CNN model on the mnist dataset
