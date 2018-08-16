@@ -5,6 +5,10 @@ Training models against the mnist dataset
 
 Notes for CNN using the mnist dataset are done, experimentation by using CNN to create various classifiers can begin.
 
+Variations on CNN:
+
+Fast R-CNN and YOLO (You only look once).
+
 # Purpose
 
 To understand and familiarize myself with the training and evalutation of a CNN learning model.
