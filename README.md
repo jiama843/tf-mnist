@@ -1,5 +1,5 @@
 # tf-mnist
-Training models against the mnist dataset
+Notes on CNN networks referencing the mnist dataset
 
 # August 13th Update
 
