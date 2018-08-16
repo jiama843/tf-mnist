@@ -85,6 +85,7 @@ The 28x28 represents the size of each matrix (feature) and the x1 represents the
 
 
     input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
+    
 
 
 3. Convolutional Layer #1 (28x28x1 → 28x28x32)
