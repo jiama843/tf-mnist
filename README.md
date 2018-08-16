@@ -8,6 +8,7 @@ Notes for CNN using the mnist dataset are done, experimentation by using CNN to 
 Variations on CNN:
 
 Fast R-CNN and YOLO (You only look once).
+https://arxiv.org/pdf/1506.02640.pdf
 
 # Purpose
 
