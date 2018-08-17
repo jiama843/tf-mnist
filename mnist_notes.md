@@ -81,14 +81,32 @@ The 28x28 represents the size of each matrix (feature) and the x1 represents the
 
 → Reshape
 
--1 denotes the batch size, which is currently undefined.
+→ Reshape
+
+/s -1 denotes the batch size, which is currently undefined. /s
+-1 is a placeholder which essentially says: “match the size needed for the full tensor”
 
 
     input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
-    
+
+
+![Image result for How to reshape tensorflow](https://image.slidesharecdn.com/ntumlcourse-171026171150/95/ntu-ml-tensorflow-56-638.jpg?cb=1509037930)
+
+
+→ Reshape
+
+-1 is a placeholder which essentially says: “match the size needed for the full tensor”
+
+
+    input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
+
+
+![Image result for How to reshape tensorflow](https://image.slidesharecdn.com/ntumlcourse-171026171150/95/ntu-ml-tensorflow-56-638.jpg?cb=1509037930)
 
 
 3. Convolutional Layer #1 (28x28x1 → 28x28x32)
+
+![Convolutional Layer](https://image.slidesharecdn.com/ntumlcourse-171026171150/95/ntu-ml-tensorflow-57-638.jpg?cb=1509037930)
 
 The first convolutional layer applies 32 filters, resulting in 32 features.
 
