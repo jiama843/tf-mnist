@@ -9,9 +9,9 @@ Convolutional networks are a type of network that is primarily used to develop c
 
 They are in a class of feed-forward neural networks.
 
+An image is essentially a matrix of pixel values, using this knowledge, we can extract data pertaining to a particular grouping of pixels that may be used represent an object.
 
 ![](https://www.kdnuggets.com/wp-content/uploads/convolutional-neural-net-process-3.png)
-
 
 
 # Components
