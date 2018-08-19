@@ -125,6 +125,8 @@ The parameters are as follows:
     
 ![Difference between valid and same padding](https://d2mxuefqeaa7sj.cloudfront.net/s_F79CC2354D35F80AD8022015218E3EF5B9B8969BB014D80A367DAD7C70939A5A_1531845712696_image.png)
 
+  - padding=”SAME” causes the output tensor to maintain the same dimensions as the input (padding accounts for offset)
+
 - activation - Specifies the type of activation function used (in this case and in the general case of CNN’s we use ReLU activation)
 
 
